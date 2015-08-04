@@ -23,26 +23,25 @@ public class IronCacheClient {
 
 	public IronCacheClient(String token, String projectId) {
 		this(new RestAdapter.Builder()
-					 .setLog(new RestAdapter.Log() {
-						 public void log(String message) {
-							 System.out.println(message);
-						 }
-					 })
-					 .setLogLevel(RestAdapter.LogLevel.FULL)
-					 .setServer("https://cache-aws-us-east-1.iron.io/1")
-					 .setErrorHandler(new ErrorHandler() {
-						 public Throwable handleError(RetrofitError e) {
-
-							 Response response = e.getResponse();
-							 if(response.getStatus() == 404) {
-								 MsgResponse msg = (MsgResponse) e.getBodyAs(MsgResponse.class);
-								 return new IronCacheNotFoundException(msg != null ? msg.getMsg() : null, e, e.getUrl());
-							 } else {
-								 return e;
-							 }
-						 }
-					 })
-					 .build(), token, projectId);
+			.setLog(new RestAdapter.Log() {
+				public void log(String message) {
+					System.out.println(message);
+				}
+			})
+			.setLogLevel(RestAdapter.LogLevel.FULL)
+			.setEndpoint("https://cache-aws-us-east-1.iron.io/1")
+			.setErrorHandler(new ErrorHandler() {
+				public Throwable handleError(RetrofitError e) {
+					Response response = e.getResponse();
+					if(response.getStatus() == 404) {
+						MsgResponse msg = (MsgResponse) e.getBodyAs(MsgResponse.class);
+						return new IronCacheNotFoundException(msg != null ? msg.getMsg() : null, e, e.getUrl());
+					} else {
+						return e;
+					}
+				}
+			})
+			.build(), token, projectId);
 	}
 
 	public IronCacheClient(RestAdapter rest, String token, String projectId) {

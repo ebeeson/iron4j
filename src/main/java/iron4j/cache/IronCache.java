@@ -1,11 +1,11 @@
 package iron4j.cache;
 
 import com.google.gson.Gson;
-import retrofit.client.Response;
 import iron4j.cache.internal.IronCacheService;
 import iron4j.cache.internal.data.CacheItemRequest;
 import iron4j.cache.internal.data.CacheItemResponse;
 import iron4j.cache.internal.data.IncrementRequest;
+import retrofit.client.Response;
 
 /**
  * 3/18/14 9:07 PM

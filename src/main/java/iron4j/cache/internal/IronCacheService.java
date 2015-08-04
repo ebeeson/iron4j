@@ -1,8 +1,8 @@
 package iron4j.cache.internal;
 
+import iron4j.cache.internal.data.*;
 import retrofit.client.Response;
 import retrofit.http.*;
-import iron4j.cache.internal.data.*;
 
 import java.util.List;
 
